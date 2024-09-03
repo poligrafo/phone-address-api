@@ -18,7 +18,7 @@ async def test_write_data(redis_client: redis.Redis) -> None:
 
 @pytest.mark.asyncio
 async def test_check_data(redis_client: redis.Redis) -> None:
-    # Предварительно записываем данные в Redis
+    # We pre-record the data in Redis
     await redis_client.set("89090000000", "Test Address")
 
     transport = ASGITransport(app=app)
