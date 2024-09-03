@@ -16,7 +16,7 @@
 ### Клонирование репозитория
 
 ```bash
-git clone https://github.com/yourusername/phone-address-api.git
+git clone git@github.com:poligrafo/phone-address-api.git
 cd phone-address-api
 ```
 
