@@ -33,6 +33,11 @@ LOGGING_CONFIG: Dict[str, Any] = {
             "propagate": False,
         },
         "uvicorn.error": {
+            "level": "ERROR",
+            "handlers": ["console", "file"],
+            "propagate": False,
+        },
+        "uvicorn.info": {
             "level": "INFO",
             "handlers": ["console", "file"],
             "propagate": False,
