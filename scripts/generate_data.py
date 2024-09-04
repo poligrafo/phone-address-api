@@ -29,7 +29,6 @@ def generate_data():
 
     try:
         with conn.cursor() as cursor:
-            # Отключение индексов для ускорения вставки
             cursor.execute("DROP TABLE IF EXISTS short_names, full_names;")
             cursor.execute("""
             CREATE TABLE short_names (
