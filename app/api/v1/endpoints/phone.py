@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException
 import redis.asyncio as redis
 
 from app.core.redis import get_redis
-from app.models.phone_address_schemas import PhoneAddress
+from app.schemas.phone_address_schemas import PhoneAddress
 from app.services.phone_services import PhoneService
 
 router = APIRouter()
@@ -24,5 +24,8 @@ async def check_data(
     redis_client: redis.Redis = Depends(get_redis)
 ) -> dict[str, str]:
     service = PhoneService(redis_client)
-    address = await service.get_data(phone)
+    try:
+        address = await service.get_data(phone)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
     return {"phone": phone, "address": address}
